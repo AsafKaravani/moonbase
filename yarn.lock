@@ -369,6 +369,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/client@npm:^3.9.1":
+  version: 3.9.1
+  resolution: "@prisma/client@npm:3.9.1"
+  dependencies:
+    "@prisma/engines-version": 3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009
+  peerDependencies:
+    prisma: "*"
+  peerDependenciesMeta:
+    prisma:
+      optional: true
+  checksum: ab18181b29df6868a8209e8f86d665f9a19253f330102a6c345044acbefa5796bfa22f092709c7c1aa618a364c9a47000b131701f90bcdd84333ed93c438c93a
+  languageName: node
+  linkType: hard
+
+"@prisma/engines-version@npm:3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
+  version: 3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009
+  resolution: "@prisma/engines-version@npm:3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
+  checksum: 413d478fc1980604de1f46a0d53ae6c752965283a7d8c51d8fb3881c371b4a71ab4aa10002dba411d961286caf1141871c3c85d209a316421cdf1e1fdac71b4e
+  languageName: node
+  linkType: hard
+
 "@prisma/engines@npm:3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
   version: 3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009
   resolution: "@prisma/engines@npm:3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
@@ -513,6 +534,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.21.1":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
+  dependencies:
+    follow-redirects: ^1.14.0
+  checksum: 44245f24ac971e7458f3120c92f9d66d1fc695e8b97019139de5b0cc65d9b8104647db01e5f46917728edfc0cfd88eb30fc4c55e6053eef4ace76768ce95ff3c
+  languageName: node
+  linkType: hard
+
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -578,7 +608,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^2.0.0":
+"chalk@npm:^2.0.0, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -676,6 +706,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "database@workspace:services/database"
   dependencies:
+    "@prisma/client": ^3.9.1
     prisma: ^3.9.1
   languageName: unknown
   linkType: soft
@@ -945,6 +976,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.14.0":
+  version: 1.14.7
+  resolution: "follow-redirects@npm:1.14.7"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: f6d03e5e30877431065bca0d1b2e3db93949eb799d368a5c07ea8a4b71205f0349a3f8f0191bf13a07c93885522834dca1dc8e527dc99a772c6911fba24edc5f
+  languageName: node
+  linkType: hard
+
 "fs-minipass@npm:^2.0.0":
   version: 2.1.0
   resolution: "fs-minipass@npm:2.1.0"
@@ -1061,6 +1102,26 @@ __metadata:
   checksum: b9ad53d53be4af90ce5d1c38331e712522417d017d5ef1ebd0507e07c2fbad8686fffb8e12ddecd4c39ca9b9b47431afbb975b8abf7f3c3b82c98e9aad052792
   languageName: node
   linkType: hard
+
+"hasura-cli@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "hasura-cli@npm:2.1.1"
+  dependencies:
+    axios: ^0.21.1
+    chalk: ^2.4.2
+  bin:
+    hasura: hasura
+  checksum: aef7589657013b2e12b74615e6c9447818b596df406947b0a700f13a8915e6cc601961dd9e786cc8df45936adc6452f81cd7eea3032b0444ddeed0e627f6fde7
+  languageName: node
+  linkType: hard
+
+"hasura@workspace:services/hasura":
+  version: 0.0.0-use.local
+  resolution: "hasura@workspace:services/hasura"
+  dependencies:
+    hasura-cli: ^2.1.1
+  languageName: unknown
+  linkType: soft
 
 "http-cache-semantics@npm:^4.1.0":
   version: 4.1.0
