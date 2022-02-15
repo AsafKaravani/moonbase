@@ -44,4 +44,4 @@ jobs:
     steps:
       - checkout
       - run: ls
-      - run: sh .circleci/get-npm-package-version.sh ./service/client/package.json
+      - run: sh .circleci/get-npm-package-version.sh ./services/client/package.json
