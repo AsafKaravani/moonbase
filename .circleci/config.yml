@@ -43,4 +43,5 @@ jobs:
     executor: docker-logged-in
     steps:
       - checkout
+      - run: ls
       - run: sh .circleci/get-npm-package-version.sh ./service/client/package.json
