@@ -39,5 +39,6 @@ jobs:
     steps:
       - run: echo Hello, World!
   set-package-version-as-env-variable:
+    executor: docker-logged-in
     steps:
-    - run: sh .circleci/get-npm-package-version.sh ./service/client/package.json
+      - run: sh .circleci/get-npm-package-version.sh ./service/client/package.json
