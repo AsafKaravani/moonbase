@@ -42,4 +42,5 @@ jobs:
   set-package-version-as-env-variable:
     executor: docker-logged-in
     steps:
+      - checkout
       - run: sh .circleci/get-npm-package-version.sh ./service/client/package.json
