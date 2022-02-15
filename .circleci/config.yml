@@ -6,6 +6,16 @@ version: 2.1
 orbs:
   node: circleci/node@4.7
 
+executors:
+  my-custom-executor:
+    docker:
+      - image: cimg/base:stable
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/AsafKaravani/moonbase/environment-variables
+          username: $DOCKER_HUB_USER
+          password: $DOCKER_HUB_PASSWORD
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -19,3 +29,12 @@ workflows:
           version: '16.10'
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: yarn
+      - my-job-name
+
+jobs:
+  my-job-name:
+    executor: my-custom-executor
+    steps:
+      - checkout
+      - run: |
+          # echo Hello, World!
