@@ -32,6 +32,7 @@ workflows:
       - my-job-name:
           requires:
             - node/test
+      - set-package-version-as-env-variable
 
 jobs:
   my-job-name:
