@@ -11,19 +11,13 @@ blocks:
         - name: Checkout
           commands:
             - checkout
-        - name: Yarn lint
-          commands:
-            - yarn lint
-        - name: Yarn install
-          commands:
-            - yarn install
         - name: 'Job #4'
           commands:
-            - $blabla=asdasdasd
+            - export blabla=asdasdasd
     dependencies: []
   - name: Static Code Analysis
     dependencies:
-      - Initialization
+      - Install
     task:
       jobs:
         - name: Send code to SonarQube
@@ -39,7 +33,7 @@ blocks:
       when: branch = 'master'
     task:
       jobs:
-        - name: ''
+        - name: Will pass only on master
           commands:
             - echo "Master branch detected"
   - name: Branch = Development
@@ -49,7 +43,7 @@ blocks:
       when: branch = 'development'
     task:
       jobs:
-        - name: ''
+        - name: Will pass only on development
           commands:
             - echo "Develop branch detected"
   - name: Upload Builds
@@ -74,3 +68,19 @@ blocks:
           commands:
             - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
             - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
+  - name: Lint
+    dependencies:
+      - Initialization
+    task:
+      jobs:
+        - name: Yarn lint
+          commands:
+            - yarn lint
+  - name: Install
+    dependencies:
+      - Lint
+    task:
+      jobs:
+        - name: Yarn lint
+          commands:
+            - yarn install
