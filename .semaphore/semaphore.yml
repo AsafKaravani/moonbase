@@ -1,0 +1,76 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Initialization
+    task:
+      jobs:
+        - name: Checkout
+          commands:
+            - checkout
+        - name: Yarn lint
+          commands:
+            - yarn lint
+        - name: Yarn install
+          commands:
+            - yarn install
+        - name: 'Job #4'
+          commands:
+            - $blabla=asdasdasd
+    dependencies: []
+  - name: Static Code Analysis
+    dependencies:
+      - Initialization
+    task:
+      jobs:
+        - name: Send code to SonarQube
+          commands:
+            - echo "Need to setup SonarQube"
+        - name: Send code to Synk
+          commands:
+            - echo $blabla
+  - name: Branch = Master
+    dependencies:
+      - Build
+    run:
+      when: branch = 'master'
+    task:
+      jobs:
+        - name: ''
+          commands:
+            - echo "Master branch detected"
+  - name: Branch = Development
+    dependencies:
+      - Build
+    run:
+      when: branch = 'development'
+    task:
+      jobs:
+        - name: ''
+          commands:
+            - echo "Develop branch detected"
+  - name: Upload Builds
+    dependencies:
+      - Branch = Master
+    task:
+      jobs:
+        - name: Docker push
+          commands:
+            - 'docker push moonpacket/moobase-client:0.3.0'
+  - name: Build
+    dependencies:
+      - Static Code Analysis
+    run:
+      when: change_in('/services/client')
+    task:
+      jobs:
+        - name: Docker login
+          commands:
+            - 'echo "${MOONPACKET_DOCKER_PASSWORD}" | docker login -u "${MOONPACKET_DOCKER_USERNAME}" --password-stdin'
+        - name: Docker build client
+          commands:
+            - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+            - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
