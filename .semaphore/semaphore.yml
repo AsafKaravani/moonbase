@@ -10,8 +10,7 @@ global_job_config:
       - checkout
 blocks:
   - name: Static Code Analysis
-    dependencies:
-      - Install
+    dependencies: []
     task:
       jobs:
         - name: Send code to SonarQube
@@ -49,8 +48,7 @@ blocks:
           commands:
             - 'docker push moonpacket/moobase-client:0.3.0'
   - name: Build
-    dependencies:
-      - Static Code Analysis
+    dependencies: []
     run:
       when: change_in('/services/client')
     task:
@@ -70,8 +68,7 @@ blocks:
           commands:
             - yarn lint
   - name: Install
-    dependencies:
-      - Lint
+    dependencies: []
     task:
       jobs:
         - name: Yarn install
