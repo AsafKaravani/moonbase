@@ -55,13 +55,13 @@ blocks:
       jobs:
         - name: Docker login and build
           commands:
-            - 'echo "${SEMAPHORE_PROJECT_ID}"'
-            - echo $SEMAPHORE_PROJECT_ID
-            - echo $MOONPACKET_DOCKER_PASSWORD
-            - echo $MOONPACKET_DOCKER_PASSWORD| docker login --username "$MOONPACKET_DOCKER_USERNAME" --password-stdin
+            - echo $MOONPACKET_DOCKER_PASSWORD | docker login --username "$MOONPACKET_DOCKER_USERNAME" --password-stdin
             - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
         - name: Docker build client
           commands: []
+      secrets:
+        - name: MOONPACKET_DOCKER_PASSWORD
+        - name: MOONPACKET_DOCKER_USERNAME
   - name: Lint
     dependencies: []
     task:
