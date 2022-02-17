@@ -55,6 +55,7 @@ blocks:
       jobs:
         - name: Docker login and build
           commands:
+            - 'echo "${MOONPACKET_DOCKER_USERNAME}"'
             - echo $MOONPACKET_DOCKER_USERNAME
             - echo $MOONPACKET_DOCKER_PASSWORD
             - echo $MOONPACKET_DOCKER_PASSWORD| docker login --username "$MOONPACKET_DOCKER_USERNAME" --password-stdin
