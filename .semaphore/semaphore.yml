@@ -39,7 +39,7 @@ blocks:
         - name: Will pass only on development
           commands:
             - echo "Develop branch detected"
-  - name: Upload Builds
+  - name: Deploy to Prod
     dependencies:
       - Branch = Master
     task:
@@ -48,17 +48,20 @@ blocks:
           commands:
             - 'docker push moonpacket/moobase-client:0.3.0'
   - name: Build
-    dependencies: []
+    dependencies:
+      - Install
+      - Lint
+      - Static Code Analysis
     run:
       when: change_in('/services/client')
     task:
       jobs:
-        - name: Docker login and build
+        - name: Docker build and push
           commands:
+            - sh .semaphore/get-npm-package-version.sh
+            - echo $PACKAGE_VERSION
             - echo $MOONPACKET_DOCKER_PASSWORD | docker login --username "$MOONPACKET_DOCKER_USERNAME" --password-stdin
             - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
-        - name: Docker build client
-          commands: []
       secrets:
         - name: MOONPACKET_DOCKER_PASSWORD
         - name: MOONPACKET_DOCKER_USERNAME
@@ -76,3 +79,10 @@ blocks:
         - name: Yarn install
           commands:
             - yarn install
+  - name: Deploy to Staging
+    dependencies:
+      - Branch = Development
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands: []
