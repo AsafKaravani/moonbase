@@ -44,9 +44,8 @@ blocks:
       - Branch = Master
     task:
       jobs:
-        - name: Docker push
-          commands:
-            - 'docker push moonpacket/moobase-client:0.3.0'
+        - name: Redeploy DigitalOcean droplet
+          commands: []
   - name: Build
     dependencies:
       - Install
@@ -84,5 +83,7 @@ blocks:
       - Branch = Development
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Redeploy DigitalOcean droplet
           commands: []
+    run:
+      when: branch = 'development'
