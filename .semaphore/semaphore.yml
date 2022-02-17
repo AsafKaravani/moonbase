@@ -19,33 +19,15 @@ blocks:
         - name: Send code to Synk
           commands:
             - echo $blabla
-  - name: Branch = Master
-    dependencies:
-      - Build
-    run:
-      when: branch = 'master'
-    task:
-      jobs:
-        - name: Will pass only on master
-          commands:
-            - echo "Master branch detected"
-  - name: Branch = Development
-    dependencies:
-      - Build
-    run:
-      when: branch = 'development'
-    task:
-      jobs:
-        - name: Will pass only on development
-          commands:
-            - echo "Develop branch detected"
   - name: Deploy to Prod
     dependencies:
-      - Branch = Master
+      - Build
     task:
       jobs:
         - name: Redeploy DigitalOcean droplet
           commands: []
+    run:
+      when: branch = 'master'
   - name: Build
     dependencies:
       - Install
@@ -58,10 +40,12 @@ blocks:
             - sh .semaphore/get-npm-package-version.sh ./services/client/package.json
             - echo $PACKAGE_VERSION
             - echo $MOONPACKET_DOCKER_PASSWORD | docker login --username "$MOONPACKET_DOCKER_USERNAME" --password-stdin
-            - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
+            - 'echo docker build ./services/client -t moonpacket/moobase-client:0.3.0'
       secrets:
         - name: MOONPACKET_DOCKER_PASSWORD
         - name: MOONPACKET_DOCKER_USERNAME
+    run:
+      when: branch = 'master' or branch = 'development'
   - name: Lint
     dependencies: []
     task:
@@ -78,7 +62,7 @@ blocks:
             - yarn install
   - name: Deploy to Staging
     dependencies:
-      - Branch = Development
+      - Build
     task:
       jobs:
         - name: Redeploy DigitalOcean droplet
