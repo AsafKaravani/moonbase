@@ -4,18 +4,11 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
+global_job_config:
+  prologue:
+    commands:
+      - checkout
 blocks:
-  - name: Initialization
-    task:
-      jobs:
-        - name: Checkout
-          commands:
-            - checkout
-            - cache store
-        - name: 'Job #4'
-          commands:
-            - export blabla=asdasdasd
-    dependencies: []
   - name: Static Code Analysis
     dependencies:
       - Install
@@ -64,21 +57,17 @@ blocks:
       jobs:
         - name: Docker login and build
           commands:
-            - cache restore
             - 'echo "${MOONPACKET_DOCKER_PASSWORD}" | docker login -u "${MOONPACKET_DOCKER_USERNAME}" --password-stdin'
             - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
             - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
-            - cache store
         - name: Docker build client
           commands: []
   - name: Lint
-    dependencies:
-      - Initialization
+    dependencies: []
     task:
       jobs:
         - name: Yarn lint
           commands:
-            - cache restore
             - yarn lint
   - name: Install
     dependencies:
@@ -87,6 +76,4 @@ blocks:
       jobs:
         - name: Yarn install
           commands:
-            - cache restore
             - yarn install
-            - cache store
