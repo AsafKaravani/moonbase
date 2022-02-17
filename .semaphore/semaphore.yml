@@ -55,7 +55,9 @@ blocks:
       jobs:
         - name: Docker login and build
           commands:
-            - 'echo "${MOONPACKET_DOCKER_PASSWORD}" | docker login -u "${MOONPACKET_DOCKER_USERNAME}" --password-stdin'
+            - 'echo "${MOONPACKET_DOCKER_USERNAME}"'
+            - 'echo "${MOONPACKET_DOCKER_PASSWORD}"'
+            - 'docker login -u "${MOONPACKET_DOCKER_USERNAME}" --password "${MOONPACKET_DOCKER_PASSWORD}"'
             - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
         - name: Docker build client
           commands: []
