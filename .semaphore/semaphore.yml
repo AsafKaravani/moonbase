@@ -51,8 +51,6 @@ blocks:
       - Install
       - Lint
       - Static Code Analysis
-    run:
-      when: change_in('/services/client')
     task:
       jobs:
         - name: Docker build and push
