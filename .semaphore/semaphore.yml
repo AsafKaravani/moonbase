@@ -58,7 +58,7 @@ blocks:
       jobs:
         - name: Docker build and push
           commands:
-            - sh .semaphore/get-npm-package-version.sh
+            - sh .semaphore/get-npm-package-version.sh ./services/client/package.json
             - echo $PACKAGE_VERSION
             - echo $MOONPACKET_DOCKER_PASSWORD | docker login --username "$MOONPACKET_DOCKER_USERNAME" --password-stdin
             - 'docker build ./services/client -t moonpacket/moobase-client:0.3.0'
