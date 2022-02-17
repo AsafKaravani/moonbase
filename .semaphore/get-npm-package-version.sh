@@ -6,4 +6,4 @@ export PACKAGE_VERSION=$(cat $1 \
   | awk -F: '{ print $2 }' \
   | sed 's/[",]//g')
 
-echo $PACKAGE_VERSIONs
+echo $PACKAGE_VERSION
