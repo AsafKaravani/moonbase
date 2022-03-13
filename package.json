@@ -9,5 +9,8 @@
   "scripts": {
     "test": "echo No tests.",
     "lint": "echo No lint."
+  },
+  "installConfig": {
+    "pnp": true
   }
 }
