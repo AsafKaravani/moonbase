@@ -13,4 +13,4 @@ node_modules
 .pnp
 
 # DANGER! This ignores the k8s secrets. DO NOT REMOVE THIS.
-secrets
+# secrets
