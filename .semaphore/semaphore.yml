@@ -25,7 +25,10 @@ blocks:
     task:
       jobs:
         - name: Redeploy DigitalOcean droplet
-          commands: []
+          commands:
+            - brew install argocd
+            - argocd login 143.244.206.182 --insecure --username admin --password LguFRFEEE2bqOuGK
+            - argocd app actions run frently-dev restart --kind Deployment
     run:
       when: branch = 'master'
   - name: Build
