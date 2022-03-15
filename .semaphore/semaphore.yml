@@ -26,10 +26,15 @@ blocks:
       jobs:
         - name: Redeploy DigitalOcean droplet
           commands:
-            - 'curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64'
-            - chmod +x /usr/local/bin/argocd
             - argocd login 143.244.206.182 --insecure --username admin --password LguFRFEEE2bqOuGK
             - argocd app actions run frently-dev restart --kind Deployment
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
+        containers:
+          - name: main
+            image: 'argoproj/argocd:latest'
     run:
       when: branch = 'master'
   - name: Build
