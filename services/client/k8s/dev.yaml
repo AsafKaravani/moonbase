@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frently-client
-        image: moonpacket/moonbase-client:0.4.0-master-33990dfa21d52c217775e3574ea9f38256e47cd6
+        image: moonpacket/moonbase-client:master-latest
         ports:
         - containerPort: 80
 ---
