@@ -5,7 +5,7 @@ metadata:
     app: hasura
     hasuraService: custom
   name: hasura
-  namespace: default
+  namespace: frently-dev
 spec:
   replicas: 1
   selector:
@@ -23,7 +23,10 @@ spec:
         name: hasura
         env:
         - name: HASURA_GRAPHQL_DATABASE_URL
-          value: postgres://username:password@hostname:port/dbname
+          valueFrom:
+              secretKeyRef:
+                  name: frently-dev-secret
+                  key: HASURA_GRAPHQL_DATABASE_URL
         ## enable the console served by server
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
@@ -41,7 +44,7 @@ metadata:
   labels:
     app: hasura
   name: hasura
-  namespace: default
+  namespace: frently-dev
 spec:
   ports:
   - protocol: TCP

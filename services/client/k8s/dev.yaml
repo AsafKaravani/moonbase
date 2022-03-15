@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frently-client
+  namespace: frently-dev
+spec:
+  selector:
+    matchLabels:
+      app: frently-client
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: frently-client
+    spec:
+      containers:
+      - name: frently-client
+        image: moonpacket/moonbase-client:0.4.0-master-33990dfa21d52c217775e3574ea9f38256e47cd6
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frently-client
+  name: frently-client
+  namespace: frently-dev
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: frently-client
+  type: LoadBalancer
