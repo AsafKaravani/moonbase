@@ -34,7 +34,7 @@ blocks:
           os_image: ubuntu1804
         containers:
           - name: main
-            image: 'argoproj/argocd:latest'
+            image: 'argoproj/argocli:latest'
     run:
       when: branch = 'master'
   - name: Build
