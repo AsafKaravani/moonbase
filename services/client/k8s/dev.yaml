@@ -16,7 +16,7 @@ spec:
       containers:
       - name: frently-client
         image: moonpacket/moonbase-client:master-latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
