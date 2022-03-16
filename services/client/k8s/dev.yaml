@@ -8,6 +8,7 @@ spec:
     matchLabels:
       app: frently-client
   replicas: 2 # tells deployment to run 2 pods matching the template
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:
