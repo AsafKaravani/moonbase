@@ -1,0 +1,89 @@
+{
+  "resource_version": 8,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "default",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "schema": "prod",
+              "name": "Post"
+            },
+            "object_relationships": [
+              {
+                "name": "User",
+                "using": {
+                  "foreign_key_constraint_on": "authorId"
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "prod",
+              "name": "Role"
+            },
+            "object_relationships": [
+              {
+                "name": "User",
+                "using": {
+                  "foreign_key_constraint_on": "userId"
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "prod",
+              "name": "User"
+            },
+            "array_relationships": [
+              {
+                "name": "Posts",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "authorId",
+                    "table": {
+                      "schema": "prod",
+                      "name": "Post"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "Roles",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "userId",
+                    "table": {
+                      "schema": "prod",
+                      "name": "Role"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "use_prepared_statements": true,
+            "database_url": {
+              "from_env": "HASURA_GRAPHQL_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "pool_settings": {
+              "connection_lifetime": 600,
+              "retries": 1,
+              "idle_timeout": 180,
+              "max_connections": 50
+            }
+          }
+        }
+      }
+    ]
+  }
+}
