@@ -3,8 +3,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { HomePage } from '@components/pages/HomePage';
-import { LoginPage } from '@components/pages/LoginPage';
+import { HomePage } from '@components/pages/home-page';
+import { LoginPage } from '@components/pages/login-page';
 
 const RoutesRoot = () => {
   return (
