@@ -9,5 +9,13 @@
   "scripts": {
     "test": "echo No tests.",
     "lint": "echo No lint."
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
