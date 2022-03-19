@@ -26,6 +26,7 @@ module.exports = {
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
     'import/extensions': ['error', 'never'],
+    'linebreak-style': ['error', 'never'],
   },
   ignorePatterns: [
     '*.svg',
