@@ -19,18 +19,33 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'import'],
   rules: {
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    'import/extensions': ['error', 'never'],
-    'linebreak-style': ['error', 'never'],
+    'import/extensions': 0,
+    'linebreak-style': 0,
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'arrow-body-style': 0,
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'import/prefer-default-export': 0,
   },
   ignorePatterns: [
     '*.svg',
     '*.d.ts',
     '*.css',
+    '*.less',
   ],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
 };
