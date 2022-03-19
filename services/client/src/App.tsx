@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from 'antd';
 import logo from './logo.svg';
 import './App.less';
 
@@ -11,11 +12,12 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={() => setCount(() => count + 1)}>
+          <Button type="ghost" onClick={() => setCount(() => count + 1)}>
             count is:
             {' '}
             {count}
-          </button>
+          </Button>
+
         </p>
         <p>
           Edit
