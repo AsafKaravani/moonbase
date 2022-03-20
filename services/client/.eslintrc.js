@@ -31,6 +31,7 @@ module.exports = {
     'arrow-body-style': 0,
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': ['error', { devDependencies: ['vite.config.ts'] }],
   },
   ignorePatterns: [
     '*.svg',

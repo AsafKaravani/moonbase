@@ -7,5 +7,9 @@ import styles from './<%= h.changeCase.param(component_name) %>.module.css';
 type Props = {};
 
 export const <%= component_name %>: React.FC<Props> = (_props) => {
-  return <div className={styles.container} />;
+  return (
+    <div className={styles.container}>
+      <%= component_name %> is working.
+    </div>
+  );
 };

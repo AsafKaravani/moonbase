@@ -5,12 +5,15 @@ import {
 } from 'react-router-dom';
 import { HomePage } from '@components/pages/home-page';
 import { LoginPage } from '@components/pages/login-page';
+import { Shell } from '@components/pages/shell';
 
-const RoutesRoot = () => {
+const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="expenses" element={<LoginPage />} />
+      <Route path="/" element={<Shell />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Route>
       <Route
         path="*"
         element={(
@@ -23,4 +26,4 @@ const RoutesRoot = () => {
   );
 };
 
-export default RoutesRoot;
+export default AppRoutes;
