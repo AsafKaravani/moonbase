@@ -1,5 +1,7 @@
 FROM mhart/alpine-node:14 AS builder
 
+ARG VITE_REACT_APP_CLERK_FRONTEND_API
+
 WORKDIR /app
 
 COPY . .
