@@ -33,6 +33,9 @@ spec:
         ## enable debugging mode. It is recommended to disable this in production
         - name: HASURA_GRAPHQL_DEV_MODE
           value: "true"
+        - name: HASURA_GRAPHQL_JWT_SECRET
+          value: '{"jwk_url":"https://clerk.artistic.iguana-74.lcl.dev/.well-known/jwks.json"}'
+
         ports:
         - containerPort: 8080
           protocol: TCP
