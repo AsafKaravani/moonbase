@@ -27,6 +27,11 @@ spec:
               secretKeyRef:
                   name: frently-dev-secret
                   key: HASURA_GRAPHQL_DATABASE_URL
+        - name: HASURA_GRAPHQL_ADMIN_SECRET
+          valueFrom:
+              secretKeyRef:
+                  name: frently-dev-secret
+                  key: HASURA_GRAPHQL_ADMIN_SECRET
         ## enable the console served by server
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
